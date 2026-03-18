@@ -1,0 +1,42 @@
+{
+  "RELACIONAL": {
+    "titulo": "O Empático | Pessoas",
+    "subtitulo": "Empático",
+    "forca": "Pessoas",
+    "descricao_curta": "Você percebe rapidamente quando o cliente está inseguro e cria confiança antes mesmo de falar de soluções. Sua força são Pessoas.",
+    "diagnostico": "Seu resultado indica uma escuta muito sensível ao lado humano da conversa. Você percebe sinais de insegurança, capta emoções com facilidade e tende a criar rapidamente um ambiente de confiança com o cliente.",
+    "impacto": "Quando o cliente sente que está sendo ouvido de verdade, ele costuma se abrir mais e compartilhar informações importantes sobre sua realidade.",
+    "vantagem": "Esse estilo favorece relações de confiança e aumenta a probabilidade de conversas mais profundas, que ajudam a construir soluções mais alinhadas à vida do cliente.",
+    "quando_brilha": "Esse estilo costuma se destacar em decisões que envolvem proteção familiar, planejamento de longo prazo e temas que exigem confiança para serem discutidos."
+  },
+  "MENSAGEM": {
+    "titulo": "O Analista | Mensagem",
+    "subtitulo": "Analista",
+    "forca": "Mensagem",
+    "descricao_curta": "Você prefere compreender bem as informações antes de recomendar algo e costuma explicar soluções com clareza e estrutura. Sua força é a Mensagem.",
+    "diagnostico": "Seu resultado mostra uma escuta orientada à qualidade da informação. Você tende a compreender bem o contexto antes de recomendar soluções e organiza suas explicações de forma clara e estruturada.",
+    "impacto": "Clientes que valorizam dados, comparações e segurança nas informações se sentem confortáveis nesse tipo de diálogo.",
+    "vantagem": "Esse estilo fortalece a credibilidade do corretor e ajuda o cliente a tomar decisões com base em argumentos consistentes.",
+    "quando_brilha": "Esse perfil costuma se destacar em conversas que exigem explicações técnicas, comparação de alternativas e segurança na tomada de decisão."
+  },
+  "ACAO": {
+    "titulo": "O Prático | Próximo Passo",
+    "subtitulo": "Prático",
+    "forca": "Próximo Passo",
+    "descricao_curta": "Durante a conversa você naturalmente pensa em qual deve ser o próximo passo e conduz o diálogo para decisões e encaminhamentos. Sua força é o Próximo Passo.",
+    "diagnostico": "Seu resultado revela uma escuta orientada para ação e encaminhamento. Durante a conversa você identifica rapidamente oportunidades e organiza o diálogo em torno de próximos passos.",
+    "impacto": "O cliente percebe que existe um caminho claro para avançar e a conversa tende a evoluir com ritmo e direcionamento.",
+    "vantagem": "Esse estilo facilita a transição entre entendimento do problema e decisão, reduzindo indecisão ao longo do processo de venda.",
+    "quando_brilha": "Esse perfil costuma se destacar em situações em que o cliente precisa de orientação prática para sair da indecisão e avançar na solução."
+  },
+  "TEMPO": {
+    "titulo": "O Objetivo | Solução Imediata",
+    "subtitulo": "Objetivo",
+    "forca": "Solução Imediata",
+    "descricao_curta": "Você prefere conversas diretas, focadas no essencial, e tende a buscar rapidamente a solução mais clara para o cliente. Sua força é a Solução Imediata.",
+    "diagnostico": "Seu resultado indica uma escuta focada em síntese e eficiência. Você tende a identificar rapidamente o ponto central da conversa e conduzir o diálogo de forma direta.",
+    "impacto": "Clientes que valorizam praticidade percebem clareza e agilidade na comunicação.",
+    "vantagem": "Esse estilo favorece decisões rápidas quando o cliente busca soluções claras e bem definidas.",
+    "quando_brilha": "Esse perfil costuma se destacar em conversas onde o cliente prefere objetividade e valoriza decisões práticas."
+  }
+}

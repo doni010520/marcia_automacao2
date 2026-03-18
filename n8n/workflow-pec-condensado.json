@@ -1,0 +1,345 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "COLE_O_ID_DA_SUA_PLANILHA_AQUI",
+          "mode": "list",
+          "cachedResultName": "Respostas - Mini PEC"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Form Responses 1",
+          "mode": "list",
+          "cachedResultName": "Form Responses 1"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [720, 432],
+      "id": "trigger-pec-mini",
+      "name": "Google Sheets Trigger",
+      "retryOnFail": true,
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "CONFIGURE_SUAS_CREDENCIAIS",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// ========================================\n// PEC CONDENSADO - Calcular Perfil\n// 12 perguntas, escala: Nunca(0), Às vezes(1), Sempre(2)\n// ========================================\n\n// Mapeamento de respostas\nconst ESCALA = {\n  'Nunca': 0,\n  'Às vezes': 1,\n  'Sempre': 2\n};\n\n// Perfis e suas perguntas\nconst PERFIS = {\n  ACAO: [1, 2, 3],\n  RELACIONAL: [4, 5, 6],\n  TEMPO: [7, 8, 9],\n  MENSAGEM: [10, 11, 12]\n};\n\nconst items = $input.all();\nconst resultados = [];\n\nfor (const item of items) {\n  const data = item.json;\n\n  // Extrair respostas das perguntas 1 a 12\n  const respostas = {};\n  for (const [key, value] of Object.entries(data)) {\n    const match = key.match(/^(\\d+)\\./);\n    if (match) {\n      const num = parseInt(match[1]);\n      respostas[num] = ESCALA[value] !== undefined ? ESCALA[value] : 0;\n    }\n  }\n\n  // Calcular pontuações\n  const pont = {\n    ACAO: PERFIS.ACAO.reduce((soma, num) => soma + (respostas[num] || 0), 0),\n    RELACIONAL: PERFIS.RELACIONAL.reduce((soma, num) => soma + (respostas[num] || 0), 0),\n    TEMPO: PERFIS.TEMPO.reduce((soma, num) => soma + (respostas[num] || 0), 0),\n    MENSAGEM: PERFIS.MENSAGEM.reduce((soma, num) => soma + (respostas[num] || 0), 0)\n  };\n\n  // Identificar predominante (maior pontuação)\n  const predominante = Object.keys(pont).reduce((a, b) =>\n    pont[a] > pont[b] ? a : b\n  );\n\n  resultados.push({\n    json: {\n      participante: data['Nome completo:'] || 'Participante',\n      pontuacoes: pont,\n      predominante: predominante\n    }\n  });\n}\n\nreturn resultados;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [944, 432],
+      "id": "code-pec-mini",
+      "name": "Calcular Perfil"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "field-nome",
+              "name": "nome",
+              "value": "={{ $('Google Sheets Trigger').item.json['Nome completo:'] }}",
+              "type": "string"
+            },
+            {
+              "id": "field-email",
+              "name": "email",
+              "value": "={{ $('Google Sheets Trigger').item.json['Informe seu melhor e-mail:'] }}",
+              "type": "string"
+            },
+            {
+              "id": "field-telefone",
+              "name": "telefone",
+              "value": "={{ $('Google Sheets Trigger').item.json['Qual é o seu número de WhatsApp?  (Use apenas números, com DDD. Ex: 11987654321) Vamos usar esse número só para enviar o seu resultado e informações do treinamento.'] }}",
+              "type": "string"
+            },
+            {
+              "id": "field-timestamp",
+              "name": "timestamp",
+              "value": "={{ $now }}",
+              "type": "string"
+            },
+            {
+              "id": "field-relacional",
+              "name": "relacional",
+              "value": "={{ $json.pontuacoes.RELACIONAL }}",
+              "type": "string"
+            },
+            {
+              "id": "field-acao",
+              "name": "acao",
+              "value": "={{ $json.pontuacoes.ACAO }}",
+              "type": "string"
+            },
+            {
+              "id": "field-tempo",
+              "name": "tempo",
+              "value": "={{ $json.pontuacoes.TEMPO }}",
+              "type": "string"
+            },
+            {
+              "id": "field-mensagem",
+              "name": "mensagem",
+              "value": "={{ $json.pontuacoes.MENSAGEM }}",
+              "type": "string"
+            },
+            {
+              "id": "field-predominante",
+              "name": "predominante",
+              "value": "={{ $json.predominante }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1168, 432],
+      "id": "edit-fields-pec",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://SEU-DOMINIO-EASYPANEL.host/gerar-relatorio-completo",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"participante\": \"{{ $json.nome }}\",\n    \"pontuacoes\": {\n      \"RELACIONAL\": {{ $json.relacional }},\n      \"ACAO\": {{ $json.acao }},\n      \"TEMPO\": {{ $json.tempo }},\n      \"MENSAGEM\": {{ $json.mensagem }}\n    },\n    \"predominante\": \"{{ $json.predominante }}\"\n  }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1392, 432],
+      "id": "http-relatorio-completo",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://SEU-DOMINIO-EASYPANEL.host/gerar-relatorio",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"participante\": \"{{ $('Edit Fields').item.json.nome }}\",\n    \"pontuacoes\": {\n      \"RELACIONAL\": {{ $('Edit Fields').item.json.relacional }},\n      \"ACAO\": {{ $('Edit Fields').item.json.acao }},\n      \"TEMPO\": {{ $('Edit Fields').item.json.tempo }},\n      \"MENSAGEM\": {{ $('Edit Fields').item.json.mensagem }}\n    },\n    \"predominante\": \"{{ $('Edit Fields').item.json.predominante }}\"\n  }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1616, 432],
+      "id": "http-relatorio",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "fromEmail": "marcia@criandoclientes.com.br",
+        "toEmail": "={{ $('Edit Fields').item.json.email }}",
+        "subject": "=Diagnóstico PEC | {{ $('Edit Fields').item.json.nome }}",
+        "html": "={{ $('HTTP Request2').item.json.html }}",
+        "options": {
+          "appendAttribution": false,
+          "attachments": "=data"
+        }
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [1840, 432],
+      "id": "send-email-pec",
+      "name": "Send email",
+      "credentials": {
+        "smtp": {
+          "id": "CONFIGURE_SUAS_CREDENCIAIS_SMTP",
+          "name": "conexao resposta"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://benitechlab.uazapi.com/send/media",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=SEU_TOKEN_UAZAPI"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"number\": \"{{ $('Edit Fields').item.json.telefone }}\",\n  \"type\": \"document\",\n  \"file\": \"{{ $('HTTP Request2').item.json.pdf_base64 }}\",\n  \"docName\": \"{{ $('Edit Fields').item.json.nome }}\",\n  \"text\": \"Olá, {{ $('Edit Fields').item.json.nome.split(' ').first() }}!\\n\\nSegue o seu Diagnóstico PEC – Perfil de Escuta e Comunicação.\\n\\nEle traz recomendações práticas para melhorar sua conexão com clientes e aumentar seus resultados.\\n\\nVale a leitura! Os insights podem elevar sua conversão em vendas.\\n\\nObrigada por participar.\\n\\nMárcia Shimizu | Criando Clientes\",\n  \"delay\": \"3000\"\n}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2064, 432],
+      "id": "whatsapp-pec",
+      "name": "Enviar WhatsApp",
+      "retryOnFail": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://benitechlab.uazapi.com/contact/add",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "token",
+              "value": "=SEU_TOKEN_UAZAPI"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"phone\": \"{{ $('Edit Fields').item.json.telefone }}\",\n  \"name\": \"{{ $('Edit Fields').item.json.nome }} - pec\"\n}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2288, 432],
+      "id": "add-contato-pec",
+      "name": "Adicionar Contato",
+      "retryOnFail": false,
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "connections": {
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Calcular Perfil",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calcular Perfil": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Send email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send email": {
+      "main": [
+        [
+          {
+            "node": "Enviar WhatsApp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar WhatsApp": {
+      "main": [
+        [
+          {
+            "node": "Adicionar Contato",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}

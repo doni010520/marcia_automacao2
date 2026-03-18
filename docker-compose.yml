@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  pec-condensado:
+    build: .
+    ports:
+      - "${PORT:-4547}:4547"
+    environment:
+      - PORT=4547
+      - API_KEY=${API_KEY:-}
+      - NODE_ENV=production
+      - PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+    restart: unless-stopped
+    mem_limit: 1g
+    cpus: 1

@@ -1,0 +1,46 @@
+{
+  "intro": [
+    "A forma como você escuta um cliente influencia diretamente como a conversa de venda evolui.",
+    "Cada corretor possui um Perfil de Escuta e Comunicação (PEC) — um estilo natural que influencia as perguntas que faz, a forma como interpreta o que o cliente diz e como conduz a conversa. Seu resultado mostra qual estilo aparece com mais força nas suas conversas com clientes."
+  ],
+  "arquetipos_intro": "Os estilos de comunicação nas conversas costumam se organizar em quatro arquétipos:",
+  "arquetipos": [
+    {
+      "nome": "Empático",
+      "perfil": "RELACIONAL",
+      "descricao": "você percebe rapidamente quando o cliente está inseguro e cria confiança antes mesmo de falar de soluções. Sua força são Pessoas."
+    },
+    {
+      "nome": "Analista",
+      "perfil": "MENSAGEM",
+      "descricao": "você prefere compreender bem as informações antes de recomendar algo e costuma explicar soluções com clareza e estrutura. Sua força é a Mensagem."
+    },
+    {
+      "nome": "Prático",
+      "perfil": "ACAO",
+      "descricao": "durante a conversa você naturalmente pensa em qual deve ser o próximo passo e conduz o diálogo para decisões e encaminhamentos. Sua força é o Próximo Passo."
+    },
+    {
+      "nome": "Objetivo",
+      "perfil": "TEMPO",
+      "descricao": "você prefere conversas diretas, focadas no essencial, e tende a buscar rapidamente a solução mais clara para o cliente. Sua força é a Solução Imediata."
+    }
+  ],
+  "resultado_intro": "Seu resultado mostra qual desses estilos aparece com mais frequência na sua comunicação.",
+  "resultado_frase": "De acordo com suas respostas, o arquétipo que aparece com mais força na sua comunicação é:",
+  "resultado_complemento": "Esse resultado indica o estilo de comunicação que você utiliza com mais frequência nas suas conversas com clientes.",
+  "fechamento": [
+    "Esse diagnóstico mostra como seu estilo de comunicação influencia suas conversas com clientes.",
+    "Quando a forma de comunicação se alinha com o perfil do cliente, a conversa flui melhor e as decisões acontecem com mais naturalidade.",
+    "No Conexão Cliente – WhatsApp Pro, você aprofunda esse diagnóstico realizando o PEC completo, que revela o perfil menos desenvolvido na sua comunicação e apresenta ações práticas para aplicar imediatamente."
+  ],
+  "metodo": [
+    "como reconhecer rapidamente o perfil de escuta do cliente",
+    "palavras-chave que fazem cada perfil se abrir na conversa",
+    "como adaptar sua comunicação para conduzir decisões"
+  ],
+  "metodo_complemento": "Tudo aplicado às conversas reais no WhatsApp entre corretor e cliente.",
+  "cta_titulo": "Quer aprofundar esse diagnóstico?",
+  "cta_texto": "Conheça o Conexão Cliente – WhatsApp Pro:",
+  "cta_link": "https://marcia1757608460.hotmart.host/whatsapp-seguro-de-vida"
+}
