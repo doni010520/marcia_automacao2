@@ -21,28 +21,6 @@ async function imageToBase64(imagePath) {
   return `data:image/png;base64,${imageBuffer.toString('base64')}`;
 }
 
-// Nomes amigáveis dos perfis
-function getNomePerfil(perfil) {
-  const nomes = {
-    'RELACIONAL': 'Empático (Pessoas)',
-    'ACAO': 'Prático (Próximo Passo)',
-    'TEMPO': 'Objetivo (Solução Imediata)',
-    'MENSAGEM': 'Analista (Mensagem)'
-  };
-  return nomes[perfil] || perfil;
-}
-
-// Cores por perfil
-function getCorPerfil(perfil) {
-  const cores = {
-    'RELACIONAL': '#e74c3c',
-    'ACAO': '#f39c12',
-    'TEMPO': '#27ae60',
-    'MENSAGEM': '#2980b9'
-  };
-  return cores[perfil] || '#17a2b8';
-}
-
 // Montar HTML completo do PDF
 async function buildHTML(data) {
   await loadData();
@@ -54,13 +32,7 @@ async function buildHTML(data) {
     throw new Error(`Perfil ${predominante} não encontrado`);
   }
 
-  // Calcular percentuais (máximo = 6 pontos por perfil)
-  const percentuais = {
-    RELACIONAL: Math.round((pontuacoes.RELACIONAL / 6) * 100),
-    ACAO: Math.round((pontuacoes.ACAO / 6) * 100),
-    TEMPO: Math.round((pontuacoes.TEMPO / 6) * 100),
-    MENSAGEM: Math.round((pontuacoes.MENSAGEM / 6) * 100)
-  };
+  const primeiroNome = participante.split(' ')[0];
 
   // Carregar imagem da capa
   let brainBase64 = '';
@@ -70,9 +42,6 @@ async function buildHTML(data) {
   } catch (e) {
     console.warn('Imagem brain-icon.png não encontrada, usando placeholder');
   }
-
-  const primeiroNome = participante.split(' ')[0];
-  const corPredominante = getCorPerfil(predominante);
 
   const html = `
 <!DOCTYPE html>
@@ -150,7 +119,6 @@ async function buildHTML(data) {
       margin-top: 0;
       padding: 0;
       page-break-before: always;
-      page-break-inside: avoid;
     }
 
     .content-page h1 {
@@ -192,206 +160,32 @@ async function buildHTML(data) {
       line-height: 1.6;
     }
 
-    /* SEÇÃO DE PONTUAÇÕES */
-    .pontuacoes-box {
-      background: #f8f9fa;
-      border-left: 5px solid #17a2b8;
-      padding: 20px;
-      margin: 25px 0;
-      page-break-inside: avoid;
-    }
-
-    .pontuacao-item {
-      margin: 20px 0;
-    }
-
-    .pontuacao-label {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 8px;
-      font-weight: 600;
-      font-size: 10pt;
-    }
-
-    .pontuacao-bar {
-      height: 25px;
-      background: #e9ecef;
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .pontuacao-fill {
-      height: 100%;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: 12px;
-      color: white;
-      font-weight: 600;
-      font-size: 10pt;
-      min-width: 40px;
-    }
-
-    .pontuacao-fill.relacional {
-      background: linear-gradient(90deg, #e74c3c 0%, #c0392b 100%);
-    }
-    .pontuacao-fill.acao {
-      background: linear-gradient(90deg, #f39c12 0%, #e67e22 100%);
-    }
-    .pontuacao-fill.tempo {
-      background: linear-gradient(90deg, #27ae60 0%, #229954 100%);
-    }
-    .pontuacao-fill.mensagem {
-      background: linear-gradient(90deg, #2980b9 0%, #2471a3 100%);
-    }
-
-    /* DESTAQUE */
-    .destaque {
-      background: #fff3cd;
-      border-left: 4px solid #ffc107;
-      padding: 15px 20px;
-      margin: 20px 0;
-      page-break-inside: avoid;
-    }
-
-    .destaque strong {
-      color: #856404;
-    }
-
-    /* RESULTADO GERAL */
-    .resultado-geral {
-      background: #e7f7f9;
-      border: 2px solid #17a2b8;
-      border-radius: 10px;
-      padding: 25px;
-      margin: 25px 0;
-      page-break-inside: avoid;
-    }
-
-    .resultado-geral h2 {
-      margin-top: 0;
-    }
-
-    .resultado-item {
-      margin: 20px 0;
-    }
-
-    .resultado-label {
-      font-size: 10pt;
-      color: #666;
-      text-transform: uppercase;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    .resultado-valor {
-      font-size: 16pt;
-      color: #17a2b8;
-      font-weight: bold;
-      margin-top: 5px;
-    }
-
-    /* SEÇÃO DO PERFIL */
-    .secao-perfil {
+    /* Seção de detalhes do relatório */
+    .secao-detalhes-relatorio {
       page-break-before: always;
       margin-top: 0;
     }
 
-    .secao-perfil p {
+    .secao-detalhes-relatorio p {
       margin-bottom: 25px;
+      text-align: justify;
       line-height: 1.9;
+      text-indent: 1.5em;
     }
 
-    .perfil-titulo-box {
-      background: ${corPredominante};
-      color: white;
-      padding: 20px 30px;
-      border-radius: 10px;
-      margin-bottom: 30px;
-      text-align: center;
+    .secao-detalhes-relatorio h2 {
+      color: #17a2b8;
+      font-size: 18pt;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      page-break-after: avoid;
     }
 
-    .perfil-titulo-box h2 {
-      color: white;
-      margin: 0;
-      font-size: 22pt;
-    }
-
-    .secao-detalhe {
-      margin: 25px 0;
-      page-break-inside: avoid;
-    }
-
-    .secao-detalhe h3 {
-      color: ${corPredominante};
-      font-size: 14pt;
-      margin-bottom: 10px;
-      padding-left: 10px;
-      border-left: 4px solid ${corPredominante};
-    }
-
-    .secao-detalhe p {
-      text-indent: 0;
-      padding-left: 14px;
-    }
-
-    /* ARQUETIPOS */
-    .arquetipo-item {
-      padding: 12px 15px;
-      margin: 10px 0;
-      border-radius: 8px;
-      background: #f8f9fa;
-      border-left: 4px solid #ccc;
-    }
-
-    .arquetipo-item.relacional { border-left-color: #e74c3c; }
-    .arquetipo-item.mensagem { border-left-color: #2980b9; }
-    .arquetipo-item.acao { border-left-color: #f39c12; }
-    .arquetipo-item.tempo { border-left-color: #27ae60; }
-
-    .arquetipo-item strong {
+    .secao-detalhes-relatorio h3 {
       color: #333;
-    }
-
-    /* CTA */
-    .cta-box {
-      background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
-      color: white;
-      padding: 30px;
-      border-radius: 10px;
-      margin: 30px 0;
-      text-align: center;
-      page-break-inside: avoid;
-    }
-
-    .cta-box h2 {
-      color: white;
-      margin-top: 0;
+      font-size: 14pt;
+      margin-top: 25px;
       margin-bottom: 15px;
-    }
-
-    .cta-box p {
-      color: white;
-      text-indent: 0;
-      text-align: center;
-    }
-
-    .cta-box a {
-      color: #ffc107;
-      font-weight: bold;
-      text-decoration: underline;
-    }
-
-    .cta-metodo {
-      text-align: left;
-      margin: 15px 0;
-    }
-
-    .cta-metodo li {
-      color: white;
-      margin: 5px 0;
     }
 
     strong {
@@ -422,129 +216,51 @@ async function buildHTML(data) {
 
     <h2>${conteudosBase.arquetipos_intro}</h2>
 
-    <div class="arquetipo-item relacional">
-      <strong>Empático</strong> – ${conteudosBase.arquetipos[0].descricao}
-    </div>
-    <div class="arquetipo-item mensagem">
-      <strong>Analista</strong> – ${conteudosBase.arquetipos[1].descricao}
-    </div>
-    <div class="arquetipo-item acao">
-      <strong>Prático</strong> – ${conteudosBase.arquetipos[2].descricao}
-    </div>
-    <div class="arquetipo-item tempo">
-      <strong>Objetivo</strong> – ${conteudosBase.arquetipos[3].descricao}
-    </div>
+    ${conteudosBase.arquetipos.map(a => `<p style="text-indent: 0;"><strong>${a.nome}</strong> – ${a.descricao}</p>`).join('\n')}
 
-    <p style="margin-top: 25px;">${conteudosBase.resultado_intro}</p>
+    <p>${conteudosBase.resultado_intro}</p>
   </div>
 
-  <!-- PÁGINA 3: RESULTADO + PONTUAÇÕES -->
-  <div class="content-page">
-    <h1>Seu Resultado</h1>
+  <!-- PÁGINA 3+: RESULTADO E PERFIL DETALHADO -->
+  <div class="secao-detalhes-relatorio">
+    <h1 style="color: #17a2b8; font-size: 24pt; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid #17a2b8;">Seu Resultado</h1>
 
     <p>${conteudosBase.resultado_frase}</p>
 
-    <!-- Resultado Geral -->
-    <div class="resultado-geral">
-      <h2>Resultado Geral</h2>
-      <div class="resultado-item">
-        <div class="resultado-label">Seu Estilo Predominante</div>
-        <div class="resultado-valor">${perfil.titulo}</div>
-      </div>
-    </div>
+    <p style="text-indent: 0;"><strong>Estilo predominante:</strong> ${perfil.titulo}</p>
 
     <p>${conteudosBase.resultado_complemento}</p>
 
-    <!-- Pontuações Detalhadas -->
-    <div class="pontuacoes-box">
-      <h3>Suas Pontuações</h3>
+    <h2>${perfil.titulo}</h2>
 
-      <div class="pontuacao-item">
-        <div class="pontuacao-label">
-          <span>Empático (Pessoas)</span>
-          <span><strong>${pontuacoes.RELACIONAL}</strong> / 6</span>
-        </div>
-        <div class="pontuacao-bar">
-          <div class="pontuacao-fill relacional" style="width: ${Math.max(percentuais.RELACIONAL, 8)}%">${percentuais.RELACIONAL}%</div>
-        </div>
-      </div>
+    <h3>Diagnóstico</h3>
+    <p>${perfil.diagnostico}</p>
 
-      <div class="pontuacao-item">
-        <div class="pontuacao-label">
-          <span>Prático (Próximo Passo)</span>
-          <span><strong>${pontuacoes.ACAO}</strong> / 6</span>
-        </div>
-        <div class="pontuacao-bar">
-          <div class="pontuacao-fill acao" style="width: ${Math.max(percentuais.ACAO, 8)}%">${percentuais.ACAO}%</div>
-        </div>
-      </div>
+    <h3>Impacto na conversa</h3>
+    <p>${perfil.impacto}</p>
 
-      <div class="pontuacao-item">
-        <div class="pontuacao-label">
-          <span>Objetivo (Solução Imediata)</span>
-          <span><strong>${pontuacoes.TEMPO}</strong> / 6</span>
-        </div>
-        <div class="pontuacao-bar">
-          <div class="pontuacao-fill tempo" style="width: ${Math.max(percentuais.TEMPO, 8)}%">${percentuais.TEMPO}%</div>
-        </div>
-      </div>
+    <h3>Vantagem comercial</h3>
+    <p>${perfil.vantagem}</p>
 
-      <div class="pontuacao-item">
-        <div class="pontuacao-label">
-          <span>Analista (Mensagem)</span>
-          <span><strong>${pontuacoes.MENSAGEM}</strong> / 6</span>
-        </div>
-        <div class="pontuacao-bar">
-          <div class="pontuacao-fill mensagem" style="width: ${Math.max(percentuais.MENSAGEM, 8)}%">${percentuais.MENSAGEM}%</div>
-        </div>
-      </div>
-    </div>
+    <h3>Quando esse perfil brilha nas vendas</h3>
+    <p>${perfil.quando_brilha}</p>
   </div>
 
-  <!-- PÁGINA 4: PERFIL DETALHADO -->
-  <div class="secao-perfil">
-    <div class="perfil-titulo-box">
-      <h2>${perfil.titulo}</h2>
-    </div>
-
-    <div class="secao-detalhe">
-      <h3>Diagnóstico</h3>
-      <p>${perfil.diagnostico}</p>
-    </div>
-
-    <div class="secao-detalhe">
-      <h3>Impacto na conversa</h3>
-      <p>${perfil.impacto}</p>
-    </div>
-
-    <div class="secao-detalhe">
-      <h3>Vantagem comercial</h3>
-      <p>${perfil.vantagem}</p>
-    </div>
-
-    <div class="secao-detalhe">
-      <h3>Quando esse perfil brilha nas vendas</h3>
-      <p>${perfil.quando_brilha}</p>
-    </div>
-  </div>
-
-  <!-- PÁGINA 5: FECHAMENTO + CTA -->
+  <!-- PÁGINA FINAL: FECHAMENTO + CTA -->
   <div class="content-page">
     <h1>Próximos Passos</h1>
 
     ${conteudosBase.fechamento.map(p => `<p>${p}</p>`).join('\n')}
 
-    <p style="text-indent: 0;"><strong>Além disso, o método ensina:</strong></p>
+    <h2>Além disso, o método ensina:</h2>
     <ul>
       ${conteudosBase.metodo.map(item => `<li>${item}</li>`).join('\n')}
     </ul>
     <p>${conteudosBase.metodo_complemento}</p>
 
-    <div class="cta-box">
-      <h2>${conteudosBase.cta_titulo}</h2>
-      <p>${conteudosBase.cta_texto}</p>
-      <p><a href="${conteudosBase.cta_link}">${conteudosBase.cta_link}</a></p>
-    </div>
+    <h2>${conteudosBase.cta_titulo}</h2>
+    <p>${conteudosBase.cta_texto}</p>
+    <p style="text-indent: 0;"><a href="${conteudosBase.cta_link}" style="color: #17a2b8; font-weight: bold;">${conteudosBase.cta_link}</a></p>
   </div>
 
 </body>
