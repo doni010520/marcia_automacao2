@@ -130,7 +130,7 @@ async function buildHTML(data) {
     }
 
     .content-page h2 {
-      color: #17a2b8;
+      color: #333;
       font-size: 18pt;
       margin-top: 30px;
       margin-bottom: 20px;
@@ -174,7 +174,7 @@ async function buildHTML(data) {
     }
 
     .secao-detalhes-relatorio h2 {
-      color: #17a2b8;
+      color: #333;
       font-size: 18pt;
       margin-top: 30px;
       margin-bottom: 20px;
@@ -190,7 +190,7 @@ async function buildHTML(data) {
 
     strong {
       font-weight: 600;
-      color: #17a2b8;
+      color: #333;
     }
 
     .page-break {
@@ -224,6 +224,7 @@ async function buildHTML(data) {
   <!-- PÁGINA 3+: RESULTADO E PERFIL DETALHADO -->
   <div class="secao-detalhes-relatorio">
     <h1 style="color: #17a2b8; font-size: 24pt; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 3px solid #17a2b8;">Seu Resultado</h1>
+
 
     <p>${conteudosBase.resultado_frase}</p>
 
@@ -260,7 +261,7 @@ async function buildHTML(data) {
 
     <h2>${conteudosBase.cta_titulo}</h2>
     <p>${conteudosBase.cta_texto}</p>
-    <p style="text-indent: 0;"><a href="${conteudosBase.cta_link}" style="color: #17a2b8; font-weight: bold;">${conteudosBase.cta_link}</a></p>
+    <p style="text-indent: 0;"><a href="${conteudosBase.cta_link}" style="color: #333; font-weight: bold;">${conteudosBase.cta_link}</a></p>
   </div>
 
 </body>
