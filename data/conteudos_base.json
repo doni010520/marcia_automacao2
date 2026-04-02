@@ -1,7 +1,8 @@
 {
   "intro": [
     "A forma como você escuta um cliente influencia diretamente como a conversa de venda evolui.",
-    "Cada corretor possui um Perfil de Escuta e Comunicação (PEC) — um estilo natural que influencia as perguntas que faz, a forma como interpreta o que o cliente diz e como conduz a conversa. Seu resultado mostra qual estilo aparece com mais força nas suas conversas com clientes."
+    "Cada corretor possui um Perfil de Escuta e Comunicação (PEC) — um estilo natural que influencia as perguntas que faz, a forma como interpreta o que o cliente diz e como conduz a conversa. Seu resultado mostra qual estilo aparece com mais força nas suas conversas com clientes.",
+    "E aqui está o ponto importante: enquanto todo mundo fala que a IA vai substituir profissões, a verdade é que a máquina não consegue fazer o que você faz naturalmente. <strong>Sua forma de escuta é a sua vantagem competitiva.</strong>"
   ],
   "arquetipos_intro": "Os estilos de comunicação nas conversas costumam se organizar em quatro arquétipos:",
   "arquetipos": [
@@ -28,19 +29,21 @@
   ],
   "resultado_intro": "Seu resultado mostra qual desses estilos aparece com mais frequência na sua comunicação.",
   "resultado_frase": "De acordo com suas respostas, o arquétipo que aparece com mais força na sua comunicação é:",
-  "resultado_complemento": "Esse resultado indica o estilo de comunicação que você utiliza com mais frequência nas suas conversas com clientes.",
   "fechamento": [
     "Esse diagnóstico mostra como seu estilo de comunicação influencia suas conversas com clientes.",
     "Quando a forma de comunicação se alinha com o perfil do cliente, a conversa flui melhor e as decisões acontecem com mais naturalidade.",
-    "No Conexão Cliente – WhatsApp Pro, você aprofunda esse diagnóstico realizando o PEC completo, que revela o perfil menos desenvolvido na sua comunicação e apresenta ações práticas para aplicar imediatamente."
+    "Mas aqui está o segredo: você tem um ponto forte (<em>que você acabou de descobrir</em>). Mas também tem um ponto fraco — um estilo de escuta menos desenvolvido que pode estar custando vendas.",
+    "No <strong>Conexão Cliente — WhatsApp Pro</strong>, você aprofunda esse diagnóstico realizando o PEC completo, que revela:"
   ],
   "metodo": [
-    "como reconhecer rapidamente o perfil de escuta do cliente",
-    "palavras-chave que fazem cada perfil se abrir na conversa",
-    "como adaptar sua comunicação para conduzir decisões"
+    "Seu perfil menos desenvolvido (e por que isso custa vendas)",
+    "Como reconhecer rapidamente o perfil de escuta do cliente",
+    "Palavras-chave que fazem cada perfil se abrir na conversa",
+    "Como adaptar sua comunicação para conduzir decisões",
+    "Como usar seu perfil para se diferenciar da IA e manter o cliente dependendo de você"
   ],
   "metodo_complemento": "Tudo aplicado às conversas reais no WhatsApp entre corretor e cliente.",
-  "cta_titulo": "Quer aprofundar esse diagnóstico?",
-  "cta_texto": "Conheça o Conexão Cliente – WhatsApp Pro:",
+  "cta_titulo": "Quer aprofundar esse diagnóstico e descobrir como virar indispensável?",
+  "cta_texto": "Conheça o Conexão Cliente — WhatsApp Pro:",
   "cta_link": "https://marcia1757608460.hotmart.host/whatsapp-seguro-de-vida"
 }
