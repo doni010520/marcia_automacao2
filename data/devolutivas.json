@@ -7,7 +7,8 @@
     "diagnostico": "Seu resultado indica uma escuta muito sensível ao lado humano da conversa. Você percebe sinais de insegurança, capta emoções com facilidade e tende a criar rapidamente um ambiente de confiança com o cliente.",
     "impacto": "Quando o cliente sente que está sendo ouvido de verdade, ele costuma se abrir mais e compartilhar informações importantes sobre sua realidade.",
     "vantagem": "Esse estilo favorece relações de confiança e aumenta a probabilidade de conversas mais profundas, que ajudam a construir soluções mais alinhadas à vida do cliente.",
-    "quando_brilha": "Esse estilo costuma se destacar em decisões que envolvem proteção familiar, planejamento de longo prazo e temas que exigem confiança para serem discutidos."
+    "quando_brilha": "Esse estilo costuma se destacar em decisões que envolvem proteção familiar, planejamento de longo prazo e temas que exigem confiança para serem discutidos.",
+    "por_que_ia": "A máquina pode processar dados sobre seguros, mas não consegue criar confiança genuína. Não percebe quando um cliente está inseguro, nem oferece empatia real. <strong>Você consegue</strong>. E é exatamente isso que faz o cliente continuar precisando de você — não de um chatbot."
   },
   "MENSAGEM": {
     "titulo": "O Analista | Mensagem",
@@ -17,7 +18,8 @@
     "diagnostico": "Seu resultado mostra uma escuta orientada à qualidade da informação. Você tende a compreender bem o contexto antes de recomendar soluções e organiza suas explicações de forma clara e estruturada.",
     "impacto": "Clientes que valorizam dados, comparações e segurança nas informações se sentem confortáveis nesse tipo de diálogo.",
     "vantagem": "Esse estilo fortalece a credibilidade do corretor e ajuda o cliente a tomar decisões com base em argumentos consistentes.",
-    "quando_brilha": "Esse perfil costuma se destacar em conversas que exigem explicações técnicas, comparação de alternativas e segurança na tomada de decisão."
+    "quando_brilha": "Esse perfil costuma se destacar em conversas que exigem explicações técnicas, comparação de alternativas e segurança na tomada de decisão.",
+    "por_que_ia": "A máquina pode gerar dados e tabelas, mas não consegue comunicar com precisão estratégica. Não filtra o que realmente importa para aquele cliente específico, nem consegue adaptar a complexidade da mensagem em tempo real. <strong>Você consegue</strong>. E é exatamente isso que faz o cliente confiar em você — não em um algoritmo."
   },
   "ACAO": {
     "titulo": "O Prático | Próximo Passo",
@@ -27,7 +29,8 @@
     "diagnostico": "Seu resultado revela uma escuta orientada para ação e encaminhamento. Durante a conversa você identifica rapidamente oportunidades e organiza o diálogo em torno de próximos passos.",
     "impacto": "O cliente percebe que existe um caminho claro para avançar e a conversa tende a evoluir com ritmo e direcionamento.",
     "vantagem": "Esse estilo facilita a transição entre entendimento do problema e decisão, reduzindo indecisão ao longo do processo de venda.",
-    "quando_brilha": "Esse perfil costuma se destacar em situações em que o cliente precisa de orientação prática para sair da indecisão e avançar na solução."
+    "quando_brilha": "Esse perfil costuma se destacar em situações em que o cliente precisa de orientação prática para sair da indecisão e avançar na solução.",
+    "por_que_ia": "A máquina pode gerar respostas rápidas, mas não consegue estruturar a solução certa para aquele cliente específico. Não consegue validar se o cliente realmente entendeu, nem adapta o próximo passo conforme a reação dele. <strong>Você consegue</strong>. E é exatamente isso que faz o cliente avançar com confiança — não com dúvida."
   },
   "TEMPO": {
     "titulo": "O Objetivo | Solução Imediata",
@@ -37,6 +40,7 @@
     "diagnostico": "Seu resultado indica uma escuta focada em síntese e eficiência. Você tende a identificar rapidamente o ponto central da conversa e conduzir o diálogo de forma direta.",
     "impacto": "Clientes que valorizam praticidade percebem clareza e agilidade na comunicação.",
     "vantagem": "Esse estilo favorece decisões rápidas quando o cliente busca soluções claras e bem definidas.",
-    "quando_brilha": "Esse perfil costuma se destacar em conversas onde o cliente prefere objetividade e valoriza decisões práticas."
+    "quando_brilha": "Esse perfil costuma se destacar em conversas onde o cliente prefere objetividade e valoriza decisões práticas.",
+    "por_que_ia": "A máquina pode ser rápida em responder, mas não consegue entender o cliente com velocidade. Não consegue fazer as perguntas certas para identificar a solução certa, nem adaptar a velocidade conforme o cliente. <strong>Você consegue</strong>. E é exatamente isso que faz o cliente comprar com segurança — não com dúvida."
   }
 }
