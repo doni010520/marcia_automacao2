@@ -230,8 +230,6 @@ async function buildHTML(data) {
 
     <p style="text-indent: 0;"><strong>Estilo predominante:</strong> ${perfil.titulo}</p>
 
-    <p>${conteudosBase.resultado_complemento}</p>
-
     <h2>${perfil.titulo}</h2>
 
     <h3>Diagnóstico</h3>
@@ -245,6 +243,9 @@ async function buildHTML(data) {
 
     <h3>Quando esse perfil brilha nas vendas</h3>
     <p>${perfil.quando_brilha}</p>
+
+    <h3>Por que a IA não consegue fazer isso</h3>
+    <p>${perfil.por_que_ia}</p>
   </div>
 
   <!-- PÁGINA FINAL: FECHAMENTO + CTA -->
@@ -283,19 +284,23 @@ function buildEmailHTML(data) {
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
   <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
     <div style="background: linear-gradient(135deg, #17a2b8 0%, #138496 100%); color: white; padding: 30px; text-align: center; border-radius: 10px;">
-      <h1 style="margin: 0;">Seu Diagnóstico PEC está Pronto!</h1>
+      <h1 style="margin: 0;">Seu Diagnóstico PEC está pronto!</h1>
     </div>
 
     <div style="padding: 30px 20px;">
-      <p>Olá, <strong>${primeiroNome}</strong>!</p>
+      <p>Ooi, <strong>${primeiroNome}</strong>!</p>
 
-      <p>Parabéns por dedicar um tempo para se conhecer melhor!</p>
+      <p>Seu Diagnóstico PEC está pronto.</p>
+
+      <p>Você vai descobrir qual é o seu estilo natural de escuta e porque a IA não consegue fazer o que você faz.</p>
+
+      <p>Tem um insight bem importante lá dentro que pode mudar como você vende.</p>
+
+      <p>Lê com atenção!</p>
 
       <p style="background: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0;">
         <strong style="color: #17a2b8;">Seu estilo predominante:</strong> ${titulo}
       </p>
-
-      <p>Anexo a este e-mail você encontra seu relatório com o diagnóstico do seu Perfil de Escuta e Comunicação, incluindo análise detalhada e recomendações práticas personalizadas.</p>
 
       <p>Um abraço,<br>
       <strong>Márcia Shimizu | Criando Clientes</strong></p>
