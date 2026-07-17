@@ -263,6 +263,9 @@ async function buildHTML(data) {
     <h2>${conteudosBase.cta_titulo}</h2>
     <p>${conteudosBase.cta_texto}</p>
     <p style="text-indent: 0;"><a href="${conteudosBase.cta_link}" style="color: #333; font-weight: bold;">${conteudosBase.cta_link}</a></p>
+
+    <p style="text-indent: 0;">${conteudosBase.instagram_texto}</p>
+    <p style="text-indent: 0;"><a href="${conteudosBase.instagram_link}" style="color: #333; font-weight: bold;">${conteudosBase.instagram_handle}</a></p>
   </div>
 
 </body>
